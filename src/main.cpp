@@ -1,30 +1,25 @@
 #include <raylib.h>
 #include "grid.h"
 
-
 int main()
 {
-    InitWindow(300, 600, "Tetris RayLib"); //initialize window
+    InitWindow(300, 600, "Tetris RayLib"); // Initialize window with width 300, height 600, and title "Tetris RayLib"
+    SetTargetFPS(60); // Set the target FPS to 60 to maintain consistent performance
+    Color darkBlue = {44, 44, 127, 255}; // Background color set to a custom dark blue
 
-    SetTargetFPS(60); // Setting Window of Game 60fps else it's goes above and might crash
-
-    Color darkBlue = {44, 44, 127, 255}; //bg colour to Dark Blue
-
-    Grid grid = Grid();
+    Grid grid = Grid(); // Create a Grid object
+    // Manually set a few cells in the grid for testing
     grid.grid[0][0] = 1;
     grid.grid[3][5] = 4;
     grid.grid[17][8] = 7;
-    grid.Print();
+    grid.Print(); // Print the current state of the grid to the console
 
-    while(WindowShouldClose() == false) // While Loop for when window is open
+    while (!WindowShouldClose()) // Main game loop - runs while the window is not closed
     {
-      BeginDrawing();
-      
-      ClearBackground(darkBlue);
-      grid.Draw();
-
-      EndDrawing();
+        BeginDrawing(); // Start drawing on the window
+        ClearBackground(darkBlue); // Clear the background with the dark blue color
+        grid.Draw();// Draw the grid
+        EndDrawing();// End the drawing phase
     }
-
-    CloseWindow();
+    CloseWindow();// Close the window and clean up resources when the game ends
 }
