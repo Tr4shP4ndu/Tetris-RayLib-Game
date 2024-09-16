@@ -1,27 +1,22 @@
 #include <raylib.h>
-#include "ball.h"
+
 
 int main()
 {
-    Color darkGreen = Color{20, 160, 133, 255};
+    InitWindow(300, 600, "Tetris RayLib"); //initialize window
 
-    const int screenWidth = 800;
-    const int screenHeight = 600;
+    SetTargetFPS(60); // Setting Window of Game 60fps else it's goes above and might crash
 
-    Ball ball = Ball();
+    Color darkBlue = {44, 44, 127, 255}; //bg colour to Dark Blue
 
-    InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
-    SetTargetFPS(60);
-
-    while (!WindowShouldClose())
+    while(WindowShouldClose() == false) // While Loop for when window is open
     {
-        BeginDrawing();
-        ClearBackground(darkGreen);
-        ball.Update();
-        ball.Draw();
-        EndDrawing();
+      BeginDrawing();
+      
+      ClearBackground(darkBlue);
+
+      EndDrawing();
     }
 
     CloseWindow();
-    return 0;
 }
