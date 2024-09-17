@@ -11,6 +11,7 @@ int main()
     
     while (!WindowShouldClose()) // Main game loop - runs while the window is not closed
     {
+        game.HandleInput();
         BeginDrawing(); // Begin rendering
         ClearBackground(darkBlue); // Clear the background with a dark blue color
         game.Draw();
