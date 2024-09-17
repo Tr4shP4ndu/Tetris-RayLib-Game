@@ -2,18 +2,18 @@
 #include <iostream>
 #include "colors.h"
 
-
-Grid::Grid() // Constructor initializes the grid dimensions, cell size, and colors
+Grid::Grid()
 {
-    numRows = 20; // Set number of rows
-    numCols = 10; // Set number of columns
-    cellSize = 30; // Size of each cell in pixels (30x30)
-    Initialize(); // Initialize grid to be empty (filled with 0)
-    colors = GetCellColors(); // Load colors that represent different block types
+    numRows = 20;  // Standard Tetris grid size (20 rows)
+    numCols = 10;  // Standard Tetris grid width (10 columns)
+    cellSize = 30; // Each cell is 30x30 pixels
+    Initialize();  // Fill the grid with empty cells
+    colors = GetCellColors(); // Load the predefined colors
 }
 
-void Grid::Initialize() // Initialize the grid by setting all cells to 0 (empty state)
+void Grid::Initialize()
 {
+    // Set all grid cells to 0 (empty state)
     for (int row = 0; row < numRows; row++)
     {
         for (int column = 0; column < numCols; column++)
@@ -23,8 +23,9 @@ void Grid::Initialize() // Initialize the grid by setting all cells to 0 (empty 
     }
 }
 
-void Grid::Print()// Print the grid to the console for debugging purposes
+void Grid::Print()
 {
+    // Print the current grid to console (mainly for debugging)
     for (int row = 0; row < numRows; row++)
     {
         for (int column = 0; column < numCols; column++)
@@ -35,20 +36,21 @@ void Grid::Print()// Print the grid to the console for debugging purposes
     }
 }
 
-
-void Grid::Draw() // Draw the grid in the window
+void Grid::Draw()
 {
+    // Render the grid in the window
     for (int row = 0; row < numRows; row++)
     {
         for (int column = 0; column < numCols; column++)
         {
-            int cellValue = grid[row][column]; // Get the value of the current cell (used as index for colors)
-            DrawRectangle(             // Draw each cell as a colored rectangle, with a slight border
-                column * cellSize + 1, // X position (with border offset)
-                row * cellSize + 1,    // Y position (with border offset)
-                cellSize - 1,          // Width (leaving border space)
-                cellSize - 1,          // Height (leaving border space)
-                colors[cellValue]      // Color from the color palette
+            int cellValue = grid[row][column]; // Fetch the current cell's value
+            // Draw the cell with the corresponding color from the palette
+            DrawRectangle(
+                column * cellSize + 1, // X position
+                row * cellSize + 1,    // Y position
+                cellSize - 1,          // Width (adjusted for border)
+                cellSize - 1,          // Height (adjusted for border)
+                colors[cellValue]      // Color based on cell value
             );
         }
     }
