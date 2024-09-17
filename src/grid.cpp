@@ -1,5 +1,6 @@
 #include "grid.h"
 #include <iostream>
+#include "colors.h"
 
 
 Grid::Grid() // Constructor initializes the grid dimensions, cell size, and colors
@@ -32,19 +33,6 @@ void Grid::Print()// Print the grid to the console for debugging purposes
         }
         std::cout << std::endl;
     }
-}
-
-std::vector<Color> Grid::GetCellColors() // Define colors for each possible value in the grid
-{
-    Color darkGrey = {26, 31, 40, 255}; // For empty cells
-    Color green = {47, 230, 23, 255};   // For value 1
-    Color red = {232, 18, 18, 255};     // For value 2
-    Color orange = {226, 116, 17, 255}; // For value 3
-    Color yellow = {237, 234, 4, 255};  // For value 4
-    Color purple = {166, 0, 247, 255};  // For value 5
-    Color cyan = {21, 204, 209, 255};   // For value 6
-    Color blue = {13, 64, 216, 255};    // For value 7
-    return {darkGrey, green, red, orange, yellow, purple, cyan, blue}; // Return the color palette corresponding to grid values
 }
 
 

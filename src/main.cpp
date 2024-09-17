@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "grid.h"
+#include "blocks.cpp"
 
 int main()
 {
@@ -9,16 +10,19 @@ int main()
 
     Grid grid = Grid(); // Create a Grid object
     // Manually set a few cells in the grid for testing
-    grid.grid[0][0] = 1;
-    grid.grid[3][5] = 4;
-    grid.grid[17][8] = 7;
+    // grid.grid[0][0] = 1;
+    // grid.grid[3][5] = 4;
+    // grid.grid[17][8] = 7;
     grid.Print(); // Print the current state of the grid to the console
+
+    LBlock block = LBlock();
 
     while (!WindowShouldClose()) // Main game loop - runs while the window is not closed
     {
         BeginDrawing(); // Start drawing on the window
         ClearBackground(darkBlue); // Clear the background with the dark blue color
         grid.Draw();// Draw the grid
+        block.Draw();
         EndDrawing();// End the drawing phase
     }
     CloseWindow();// Close the window and clean up resources when the game ends

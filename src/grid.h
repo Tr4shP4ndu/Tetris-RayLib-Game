@@ -12,7 +12,6 @@ class Grid
     int grid[20][10]; // Fixed-size grid of 20 rows and 10 columns
 
   private:
-    std::vector<Color> GetCellColors(); // Helper to define colors for grid cells
     int numRows;     // Number of rows in the grid
     int numCols;     // Number of columns in the grid
     int cellSize;    // Size of each cell in pixels
