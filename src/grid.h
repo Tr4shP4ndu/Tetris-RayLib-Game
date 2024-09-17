@@ -9,6 +9,7 @@ class Grid
     void Initialize();// Function to reset the grid values
     void Print();     // Output the current grid state to console (for debugging)
     void Draw();      // Render the grid in the window
+    bool IsCellOutside(int row, int column);
     int grid[20][10]; // Fixed-size grid for the Tetris game (20 rows by 10 columns)
 
   private:
