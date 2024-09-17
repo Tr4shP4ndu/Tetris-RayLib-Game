@@ -15,7 +15,7 @@ int main()
     // grid.grid[17][8] = 7;
     grid.Print(); // Print the current state of the grid to the console
 
-    LBlock block = LBlock();
+    ZBlock block = ZBlock();
 
     while (!WindowShouldClose()) // Main game loop - runs while the window is not closed
     {
