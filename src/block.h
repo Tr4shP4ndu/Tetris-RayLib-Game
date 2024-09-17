@@ -12,6 +12,8 @@ class Block // Each block has a unique ID, rotation state, and uses a color from
     void Draw(); // Method to draw the block on the screen
     void Move(int rows, int columns);
     std::vector<Position> GetCellPositions();
+    void Rotate();
+    void UndoRotation();
     int id; // ID representing the type of block, corresponding to a color in the palette
     // A map that holds different rotation states of the block
     // Each key in the map corresponds to a rotation state (0, 90, 180, etc.)
