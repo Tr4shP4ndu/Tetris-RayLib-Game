@@ -11,9 +11,13 @@ class Grid
     void Draw();      // Render the grid in the window
     bool IsCellOutside(int row, int column);
     bool IsCellEmpty(int row, int column);
+    int ClearFullRows();
     int grid[20][10]; // Fixed-size grid for the Tetris game (20 rows by 10 columns)
 
   private:
+    bool IsRollFull(int row);
+    void ClearRow(int row);
+    void MoveRowDow(int row, int numRows);
     int numRows;      // Number of rows in the grid
     int numCols;      // Number of columns in the grid
     int cellSize;     // Size of each grid cell in pixels
