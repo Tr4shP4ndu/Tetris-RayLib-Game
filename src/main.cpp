@@ -25,7 +25,7 @@ int main()
     while (!WindowShouldClose()) // Main game loop - runs while the window is not closed
     {
         game.HandleInput();
-        if(EvenTriggered(0.2))
+        if(EvenTriggered(0.02))
         {
           game.MoveBlockDown();
         }

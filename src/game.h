@@ -14,6 +14,7 @@ class Game
     void MoveBlockRight();
     void MoveBlockDown();
     Grid grid;
+    bool gameOver;
 
   private:
     bool IsBlockOutside();
