@@ -13,6 +13,8 @@ extern const Color yellow;   // Represents value 4
 extern const Color purple;   // Represents value 5
 extern const Color cyan;     // Represents value 6
 extern const Color blue;     // Represents value 7
+extern const Color lightBlue; // Represents value 8
+extern const Color darkBlue; // Represents value 9
 
 // Function to return a vector containing all defined colors
 // Useful for accessing the palette corresponding to grid values

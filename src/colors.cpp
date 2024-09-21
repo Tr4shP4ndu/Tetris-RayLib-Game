@@ -11,10 +11,11 @@ const Color yellow = {237, 234, 4, 255};  // Color for cells with value 4
 const Color purple = {166, 0, 247, 255};  // Color for cells with value 5
 const Color cyan = {21, 204, 209, 255};   // Color for cells with value 6
 const Color blue = {13, 64, 216, 255};    // Color for cells with value 7
-
+const Color lightBlue = {59, 85, 162, 255};
+const Color darkBlue = {44, 44, 127, 255};
 // Returns a vector containing all the colors in the order they correspond to grid values.
 // This allows easy access to color mapping for cells by their value.
 std::vector<Color> GetCellColors()
 {
-    return {darkGrey, green, red, orange, yellow, purple, cyan, blue};
+    return {darkGrey, green, red, orange, yellow, purple, cyan, blue, lightBlue, darkBlue};
 }

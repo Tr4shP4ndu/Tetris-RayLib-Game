@@ -18,8 +18,8 @@ void Block::Draw() // Draw the block on the grid based on its current rotation s
     {
         
         DrawRectangle(                     // Draw each cell as a rectangle with a slight border for visual separation
-            item.column * cellSize + 1,    // X position with a slight offset for the border
-            item.row * cellSize + 1,       // Y position with a slight offset for the border
+            item.column * cellSize + 11,    // X position with a slight offset for the border
+            item.row * cellSize + 11,       // Y position with a slight offset for the border
             cellSize - 1,                  // Width of the cell, leaving space for the border
             cellSize - 1,                  // Height of the cell, leaving space for the border
             colors[id]                     // Assign the color based on the block's ID

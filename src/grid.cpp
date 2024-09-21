@@ -46,8 +46,8 @@ void Grid::Draw()
             int cellValue = grid[row][column]; // Fetch the current cell's value
             // Draw the cell with the corresponding color from the palette
             DrawRectangle(
-                column * cellSize + 1, // X position
-                row * cellSize + 1,    // Y position
+                column * cellSize + 11, // X position
+                row * cellSize + 11,    // Y position
                 cellSize - 1,          // Width (adjusted for border)
                 cellSize - 1,          // Height (adjusted for border)
                 colors[cellValue]      // Color based on cell value
