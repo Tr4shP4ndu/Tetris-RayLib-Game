@@ -11,15 +11,15 @@ Block::Block() // Initializes cell size, rotation state, and loads the color pal
 }
 
 
-void Block::Draw() // Draw the block on the grid based on its current rotation state
+void Block::Draw(int offsetX, int offsetY) // Draw the block on the grid based on its current rotation state
 {
     std::vector<Position> tiles = GetCellPositions(); // Get the positions of the block's cells for the current rotation state
     for(Position item : tiles) // Iterate over each cell (Position) in the block and draw it
     {
         
         DrawRectangle(                     // Draw each cell as a rectangle with a slight border for visual separation
-            item.column * cellSize + 11,    // X position with a slight offset for the border
-            item.row * cellSize + 11,       // Y position with a slight offset for the border
+            item.column * cellSize + offsetX,    // X position with a slight offset for the border
+            item.row * cellSize + offsetY,       // Y position with a slight offset for the border
             cellSize - 1,                  // Width of the cell, leaving space for the border
             cellSize - 1,                  // Height of the cell, leaving space for the border
             colors[id]                     // Assign the color based on the block's ID

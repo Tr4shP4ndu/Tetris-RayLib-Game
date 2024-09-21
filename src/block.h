@@ -9,7 +9,7 @@ class Block // Each block has a unique ID, rotation state, and uses a color from
 {
   public:
     Block(); // Constructor initializes block attributes (size, rotation state, color palette)
-    void Draw(); // Method to draw the block on the screen
+    void Draw(int offsetX, int offsetY);
     void Move(int rows, int columns);
     std::vector<Position> GetCellPositions();
     void Rotate();
