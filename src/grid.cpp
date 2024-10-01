@@ -1,14 +1,21 @@
+/*
+This file defines the behavior of the game grid. It handles the grid's initialization, rendering, checking if cells are inside the grid, clearing full rows, and moving rows down after a line is cleared.
+
+Grid Initialization: Initializes the grid with empty cells.
+Draw: Renders the grid and its colors on the screen.
+ClearFullRows: Checks for and clears fully filled rows.
+*/
 #include "grid.h"
 #include <iostream>
 #include "colors.h"
 
 Grid::Grid()
 {
-    numRows = 20;  // Standard Tetris grid size (20 rows)
-    numCols = 10;  // Standard Tetris grid width (10 columns)
-    cellSize = 30; // Each cell is 30x30 pixels
-    Initialize();  // Fill the grid with empty cells
-    colors = GetCellColors(); // Load the predefined colors
+    numRows = 20;  // Sets the number of rows in the grid (standard Tetris size)
+    numCols = 10;  // Sets the number of columns in the grid (standard Tetris size)
+    cellSize = 30;  // Size of each grid cell in pixels
+    Initialize();  // Initializes the grid with empty cells
+    colors = GetCellColors();  // Loads a palette of colors for grid cells
 }
 
 void Grid::Initialize()

@@ -1,19 +1,32 @@
+/*
+This file contains the main logic for the Tetris game. It initializes the game, manages the game state, handles player input, moves blocks, rotates blocks, checks for collisions, and updates the score.
+
+Constructor (Game::Game): Initializes game elements like the grid, blocks, sounds, and music.
+Destructor (Game::~Game): Unloads sounds and closes the audio device.
+HandleInput: Reads the player's input (e.g., moving the block left/right, rotating it).
+MoveBlock...: Functions that move the current block left, right, or down.
+RotateBlock: Rotates the block, checks if it's out of bounds, and reverts if necessary.
+LockBlock: Locks the block into place when it can no longer move down.
+GetRandomBlock: Chooses a random block and ensures there are no repeats until all blocks have been used.
+BlockFits/IsBlockOutside: Check whether the block is valid in its current position.
+*/
+
 #include "game.h"
 #include <random>
 
 Game::Game()
 {
-  grid = Grid();
-  blocks = GetAllBlocks();
-  currentBlock = GetRandomBlock();
-  nextBlock = GetRandomBlock();
-  gameOver = false;
-  score = 0;
-  InitAudioDevice();
-  music = LoadMusicStream("sounds/music.mp3");
-  PlayMusicStream(music);
-  rotateSound = LoadSound("sounds/rotate.mp3");
-  clearSound = LoadSound("sounds/clear.mp3");
+  grid = Grid();  // Initializes the game grid
+  blocks = GetAllBlocks();  // Retrieves all Tetris blocks
+  currentBlock = GetRandomBlock();  // Sets the current block to a random block
+  nextBlock = GetRandomBlock();  // Sets the next block to a random block
+  gameOver = false;  // Initializes the gameOver flag to false
+  score = 0;  // Initializes the score to 0
+  InitAudioDevice();  // Initializes the audio device for playing sounds
+  music = LoadMusicStream("sounds/music.mp3");  // Loads the background music
+  PlayMusicStream(music);  // Starts playing the background music
+  rotateSound = LoadSound("sounds/rotate.mp3");  // Loads the rotate sound effect
+  clearSound = LoadSound("sounds/clear.mp3");  // Loads the clear line sound effect
 }
 
 Game::~Game()
