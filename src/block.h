@@ -9,12 +9,12 @@ class Block // Each block has a unique ID, rotation state, and uses a color from
 {
   public:
     Block(); // Constructor initializes block attributes (size, rotation state, color palette)
-    void Draw(int offsetX, int offsetY);
+    void Draw(int offsetX, int offsetY) const;
     void Move(int rows, int columns);
-    std::vector<Position> GetCellPositions();
+    std::vector<Position> GetCellPositions() const;
     void Rotate();
     void UndoRotation();
-    int id; // ID representing the type of block, corresponding to a color in the palette
+    int Id() const { return id; }
     // A map that holds different rotation states of the block
     // Each key in the map corresponds to a rotation state (0, 90, 180, etc.)
     std::map<int, std::vector<Position>> cells; // The value is a vector of Positions representing the block's cells
@@ -25,4 +25,6 @@ class Block // Each block has a unique ID, rotation state, and uses a color from
     std::vector<Color> colors; // Vector of colors corresponding to block IDs, loaded from the palette
     int rowOffset; // Offset for each row in the block
     int columnOffset; // Offset for each column in the block
+  protected:
+    int id; // ID representing the type of block, corresponding to a color in the palette
 };

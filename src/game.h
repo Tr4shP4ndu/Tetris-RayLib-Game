@@ -7,7 +7,7 @@ Private Methods: Includes utility functions like checking if the block fits, res
 
 #pragma once
 #include "grid.h"
-#include "blocks.cpp"
+#include "blocks.h"
 
 class Game
 {

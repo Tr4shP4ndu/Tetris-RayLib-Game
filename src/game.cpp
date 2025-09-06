@@ -16,7 +16,7 @@ BlockFits/IsBlockOutside: Check whether the block is valid in its current positi
 
 Game::Game()
 {
-  grid = Grid();  // Initializes the game grid
+  // Grid default-constructs itself; no assignment needed
   blocks = GetAllBlocks();  // Retrieves all Tetris blocks
   currentBlock = GetRandomBlock();  // Sets the current block to a random block
   nextBlock = GetRandomBlock();  // Sets the next block to a random block
@@ -43,7 +43,9 @@ Block Game::GetRandomBlock()
   {
     blocks = GetAllBlocks();
   }
-  int randomIndex = rand() % blocks.size();
+  static std::mt19937 rng{std::random_device{}()};
+  std::uniform_int_distribution<int> dist(0, static_cast<int>(blocks.size() - 1));
+  int randomIndex = dist(rng);
   Block block = blocks[randomIndex];
   blocks.erase(blocks.begin() + randomIndex);
   return block;
@@ -59,7 +61,7 @@ void Game::Draw()
 {
   grid.Draw();
   currentBlock.Draw(11, 11);
-  switch(nextBlock.id)
+  switch(nextBlock.Id())
   {
     case 3:
         nextBlock.Draw(255, 290);
@@ -140,7 +142,7 @@ void Game::MoveBlockDown()
 bool Game::IsBlockOutside()
 {
   std::vector<Position> tiles = currentBlock.GetCellPositions();
-  for(Position item: tiles)
+  for(const Position& item: tiles)
   {
       if(grid.IsCellOutside(item.row, item.column))
       {
@@ -169,9 +171,9 @@ void Game::RotateBlock()
 void Game::LockBlock()
 {
   std::vector<Position> tiles = currentBlock.GetCellPositions();
-  for(Position item: tiles)
+  for(const Position& item: tiles)
   {
-    grid.grid[item.row][item.column] = currentBlock.id;
+    grid.grid[item.row][item.column] = currentBlock.Id();
 
   }
   currentBlock = nextBlock;

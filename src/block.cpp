@@ -11,10 +11,10 @@ Block::Block() // Initializes cell size, rotation state, and loads the color pal
 }
 
 
-void Block::Draw(int offsetX, int offsetY) // Draw the block on the grid based on its current rotation state
+void Block::Draw(int offsetX, int offsetY) const // Draw the block on the grid based on its current rotation state
 {
     std::vector<Position> tiles = GetCellPositions(); // Get the positions of the block's cells for the current rotation state
-    for(Position item : tiles) // Iterate over each cell (Position) in the block and draw it
+    for(const Position& item : tiles) // Iterate over each cell (Position) in the block and draw it
     {
         
         DrawRectangle(                     // Draw each cell as a rectangle with a slight border for visual separation
@@ -33,14 +33,15 @@ void Block::Move(int rows, int columns)
   columnOffset += columns;
 }
 
-std::vector<Position> Block::GetCellPositions()
+std::vector<Position> Block::GetCellPositions() const
 {
-  std::vector<Position> tiles = cells[rotationState];
+  const std::vector<Position>& tiles = cells.at(rotationState);
   std::vector<Position> movedTiles;
-  for(Position item: tiles)
+  movedTiles.reserve(tiles.size());
+  for(const Position& item: tiles)
   {
     Position newPos = Position(item.row + rowOffset, item.column + columnOffset);
-    movedTiles.push_back(newPos);
+    movedTiles.emplace_back(newPos);
   }
   return movedTiles;
 }

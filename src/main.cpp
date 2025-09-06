@@ -2,14 +2,12 @@
 #include "game.h"
 #include "colors.h"
 #include <iostream>
+#include <cstdio>
 
-double lastUpdateTime = 0;
-
-bool EvenTriggered(double interval)
-{
-  double currentTime = GetTime();
-  if(currentTime - lastUpdateTime >= interval)
-  {
+static double lastUpdateTime = 0.0;
+static inline bool HasIntervalElapsed(double intervalSeconds) {
+  const double currentTime = GetTime();
+  if (currentTime - lastUpdateTime >= intervalSeconds) {
     lastUpdateTime = currentTime;
     return true;
   }
@@ -18,7 +16,9 @@ bool EvenTriggered(double interval)
 
 int main()
 {
-    InitWindow(500, 620, "Tetris RayLib"); // Initialize window with width 300, height 600, and title "Tetris RayLib"
+    constexpr int kWindowW = 500;
+    constexpr int kWindowH = 620;
+    InitWindow(kWindowW, kWindowH, "Tetris RayLib");
     SetTargetFPS(60); // Set the target FPS to 60 for smooth gameplay
 
     Font font = LoadFontEx("font/monogram.ttf", 64, 0, 0);
@@ -29,7 +29,7 @@ int main()
     {
         UpdateMusicStream(game.music);
         game.HandleInput();
-        if(EvenTriggered(0.2))
+        if(HasIntervalElapsed(0.2))
         {
           game.MoveBlockDown();
         }
@@ -42,8 +42,8 @@ int main()
           DrawTextEx(font, "GAME OVER!", {320, 450}, 38, 2, WHITE);
         }
         DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, lightBlue);
-        char scoreText[10];
-        sprintf(scoreText, "%d", game.score);
+        char scoreText[16];
+        snprintf(scoreText, sizeof(scoreText), "%d", game.score);
         Vector2 textSize = MeasureTextEx(font, scoreText, 38, 2);
         DrawTextEx(font, scoreText, {320 + (170 - textSize.x) / 2, 65}, 38, 2, WHITE);
         DrawRectangleRounded({320, 215, 170, 180}, 0.3, 6, lightBlue);

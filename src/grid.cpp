@@ -9,11 +9,7 @@ ClearFullRows: Checks for and clears fully filled rows.
 #include <iostream>
 #include "colors.h"
 
-Grid::Grid()
-{
-    numRows = 20;  // Sets the number of rows in the grid (standard Tetris size)
-    numCols = 10;  // Sets the number of columns in the grid (standard Tetris size)
-    cellSize = 30;  // Size of each grid cell in pixels
+Grid::Grid() : numRows(20), numCols(10), cellSize(30) {
     Initialize();  // Initializes the grid with empty cells
     colors = GetCellColors();  // Loads a palette of colors for grid cells
 }
@@ -30,7 +26,7 @@ void Grid::Initialize()
     }
 }
 
-void Grid::Print()
+void Grid::Print() const
 {
     // Print the current grid to console (mainly for debugging)
     for (int row = 0; row < numRows; row++)
@@ -43,7 +39,7 @@ void Grid::Print()
     }
 }
 
-void Grid::Draw()
+void Grid::Draw() const
 {
     // Render the grid in the window
     for (int row = 0; row < numRows; row++)
@@ -63,7 +59,7 @@ void Grid::Draw()
     }
 }
 
-bool Grid::IsCellOutside(int row, int column)
+bool Grid::IsCellOutside(int row, int column) const
 {
   if(row >= 0 && row < numRows && column >= 0 && column < numCols)
   {
@@ -72,7 +68,7 @@ bool Grid::IsCellOutside(int row, int column)
   return true;
 }
 
-bool Grid::IsCellEmpty(int row, int column)
+bool Grid::IsCellEmpty(int row, int column) const
 {
   if(grid[row][column] == 0)
   {
@@ -86,20 +82,20 @@ int Grid::ClearFullRows()
   int completed = 0;
   for(int row = numRows-1; row >= 0; row--)
   {
-    if(IsRollFull(row))
+    if(IsRowFull(row))
     {
       ClearRow(row);
       completed++;
     }
     else if(completed > 0)
     {
-      MoveRowDow(row, completed);
+      MoveRowDown(row, completed);
     }
   }
   return completed;
 }
 
-bool Grid::IsRollFull(int row)
+bool Grid::IsRowFull(int row) const
 {
   for(int column = 0; column < numCols; column++)
   {
@@ -119,11 +115,11 @@ void Grid::ClearRow(int row)
   }
 }
 
-void Grid::MoveRowDow(int row, int numRows)
+void Grid::MoveRowDown(int row, int count)
 {
   for(int column = 0; column < numCols; column++)
   {
-    grid[row + numRows][column] = grid[row][column];
+    grid[row + count][column] = grid[row][column];
     grid[row][column] = 0;
   }
 
